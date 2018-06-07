@@ -4,7 +4,7 @@
             <div class='place-holder'></div>
             <Searchbar/>
         </div>
-        <Placesroll/>
+        <Placesroll :nob='nob'/>
 
     </div>
 </template>

@@ -1,8 +1,17 @@
 <template>
     <div class="picture-viewer-container">
-        <div class='picture-holder'>
+        <!-- <div class='picture-holder'>
             <img :src="pictures[nowIndex]" >
+        </div> -->
+
+        <div class='picture-holder'>
+            <div v-for='(picture, index) in pictures' :key='index' v-bind:class='{omit : omitIndex(index)}'>
+                <img :src="picture">
+            </div>
         </div>
+
+
+
         <nav>
             <div class='operator-holder nav-wrapper blue-grey'>
                 <ul class="hide-on-med-and-down">
@@ -45,20 +54,29 @@ export default {
         goRight(){
             this.nowIndex ++;
             this.nowIndex %= this.nop;
+        },
+        omitIndex(i){
+            return this.nowIndex != i
         }
     }
 }
 </script>
 
 <style>
+
     .picture-viewer-container{
-        max-width: 75%;
+        max-width: 100%;
         margin: 0px;
         
     }
     .picture-viewer-container .picture-holder{
         height: 500px;
     }
+
+    .picture-viewer-container .picture-holder div{
+        height: 100%;
+    }
+
 
     .picture-viewer-container .picture-holder img{
         width: auto;
@@ -74,5 +92,10 @@ export default {
         -ms-user-select: none; /* IE10+/Edge */
         user-select: none; /* Standard */
     }
+
+    .omit{
+        display: none;
+    }
+
 </style>
 

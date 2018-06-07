@@ -1,5 +1,9 @@
 <template>
     <div class="view-place">
+        
+        <div class="progress" v-bind:class='{omit : doneLoading}'>
+            <div class="indeterminate" ></div>
+        </div>
 
         <div class="left-buttons">
             <button class='btn-large light-blue' @click='goBack(e)'>Back</button>
@@ -75,7 +79,8 @@ export default {
     data(){
         return{
             omitContact: true,
-            place : {}
+            place : {},
+            doneLoading : false
             
             // place:{
             //     description : 'Top Floor Penthouse with amazing view, near by McDonald\'s and seve eleven. with Gym and study rooms. bla bla bla bla bla bla bla bla bla bla bla bla, bla bla bla, bla bla bla bla, bla.',
@@ -134,6 +139,7 @@ export default {
                     console.log(this.place)
                 }
                 else console.log('No such document!')
+                this.doneLoading = true
             }
         ).catch(
             (error) => {
@@ -159,7 +165,7 @@ export default {
 }
 
 .first-container{
-    width: 100vw;
+    width: 100%;
     margin: 10px auto;
 }
 
@@ -265,7 +271,7 @@ export default {
 .view-place .left-buttons{
     position:fixed;
     left: 12.5%;
-    top: 75px;
+    top: 130px;
     border-radius: 30px;
     width: 10%;
     text-align: left;

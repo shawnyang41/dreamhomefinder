@@ -2,31 +2,31 @@
     <div class="place card horizontal">
         
             <div class="card-image">
-                <img src="https://www.w3schools.com/howto/img_forest.jpg">
+                <img :src="place.pictures[0]">
             </div>
             <div class="card-stack left-part">
                 <div class="first-line">
-                    <span class="card-title title">{{nob}} Bedroom</span>
-                    <span class="card-title address"> @ {{address}}
+                    <span class="card-title title">{{place.nob}} Bedroom</span>
+                    <span class="card-title address"> @ {{place.address}}
                         <iframe class='drop-down-content'
                         width="450"
                         height="250"
                         frameborder="0" style="border:0"
-                        src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCEPmad6ExmcZ_741R0NzdCNta73umo1Zc&q=1+Columbia+St" allowfullscreen>
+                        :src="googleMapSrc()" allowfullscreen>
                         </iframe>
                     </span>
                     
                 </div>
                 <div id= 'price-holder' class="card-content">
-                    Monthly Price: <span class='price'> {{1600}}</span>
-                    <span class='date'>From <span class='price'>{{start}}</span></span>
+                    Monthly Price: <span class='price'> {{place.price.price}}</span>
+                    <span class='date'>From <span class='price'>{{place.start}}</span></span>
                 </div>
                 <div id='text-desc' class="card-content">
-                    <p>{{description}}</p>
+                    <p>{{place.description}}</p>
                 </div>
                 
                 <div class='card-bottom-part'>
-                    <span class="chip blue-grey darken-1 tag-card" v-for='(tag, index) in tags' :key='index'>
+                    <span class="chip blue-grey darken-1 tag-card" v-for='(tag, index) in place.tags' :key='index'>
                         {{tag}}
                     </span>
                 </div>
@@ -42,23 +42,22 @@ export default {
     name : 'Place',
     data(){
         return {
-            description : 'Top Floor Penthouse with amazing view, near by McDonald\'s and seve eleven. with Gym and study rooms. bla bla bla bla bla bla bla bla bla bla bla bla, bla bla bla, bla bla bla bla, bla.',
-            tags :['Pet Friendly', 'Big Bed', 'Bus Stop'],
-            nob: 2,
-            address: '1 Columbia St., Wateroo, ON',
-            price: '1600',
-            start: 'DEC 2018',
-            addressSlug: '1+Columbia+St'
+
         }
     },
     methods : {
         showMore(){
-            this.$router.push({name: 'Viewplace', params : {id : this.id}})
+            this.$router.push({name: 'Viewplace', params : {id : this.place.id}})
+        },
+        googleMapSrc(){
+            return 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCEPmad6ExmcZ_741R0NzdCNta73umo1Zc&q=' + this.place.addressSlug
         }
     },
-    props : ['id'],
+    props : ['place'],
     created(){
+        console.log(this.place)
     }
+
 }
 </script>
 
@@ -70,6 +69,10 @@ export default {
 }
 .card-image{
     width: 25%;
+}
+
+.card-image img{
+    margin: auto;
 }
 
 .card-image img{

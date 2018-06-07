@@ -20,9 +20,6 @@ export default {
 </script>
 
 <style>
-#app {
-
-}
 
 .outer-container{
   text-align: center;
