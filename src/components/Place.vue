@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .place{
     margin-bottom:30px;
@@ -70,7 +70,6 @@ export default {
 }
 .card-image{
     width: 25%;
-
 }
 
 .card-image img{
