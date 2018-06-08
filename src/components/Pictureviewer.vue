@@ -45,15 +45,14 @@ export default {
     },
     methods:{
         goLeft(){
-            this.nowIndex+=this.nop;
-            this.nowIndex --;
-            this.nowIndex %= this.nop;
+            if(this.nowIndex == 0) this.nowIndex = this.nop - 1
+            else this.nowIndex --
             
         },
 
         goRight(){
-            this.nowIndex ++;
-            this.nowIndex %= this.nop;
+            if(this.nowIndex == this.nop - 1) this.nowIndex = 0
+            else this.nowIndex ++
         },
         omitIndex(i){
             return this.nowIndex != i
@@ -92,6 +91,17 @@ export default {
         -ms-user-select: none; /* IE10+/Edge */
         user-select: none; /* Standard */
     }
+
+
+    .middle-number .brand-logo{
+        font-size: 1.25em;
+    }
+
+    .middle-number .brand-logo:hover{
+        cursor: default;
+        background-color: #607d8b;
+    }
+
 
     .omit{
         display: none;

@@ -10,7 +10,7 @@
             <i class="material-icons">chevron_right</i>
             <span class="blinker"></span>
         </div>
-        <Searchbar/>
+        <Searchbar :initnob='initnob' @changeSearch='go'/>
     </div>
 </template>
 
@@ -21,10 +21,13 @@ export default {
     name: 'Home',
     data(){
         return {
+            initnob: 1
         }
     },
     methods: {
-        
+        go(payload){
+            this.$router.push({name: 'Search', params : {nob : payload.nob}})
+        }
     },
     computed:{
     },

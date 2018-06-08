@@ -1,10 +1,10 @@
 <template>
-    <div class="place card horizontal">
-        
+    <div class="place card horizontal " @click='showMore()'>
             <div class="card-image">
                 <img :src="place.pictures[0]">
             </div>
-            <div class="card-stack left-part">
+
+            <div id= 'left-part' class="card-stack left-part" >
                 <div class="first-line">
                     <span class="card-title title">{{place.nob}} Bedroom</span>
                     <span class="card-title address"> @ {{place.address}}
@@ -14,25 +14,21 @@
                         frameborder="0" style="border:0"
                         :src="googleMapSrc()" allowfullscreen>
                         </iframe>
-                    </span>
-                    
+                    </span>   
                 </div>
                 <div id= 'price-holder' class="card-content">
                     Monthly Price: <span class='price'> {{place.price.price}}</span>
                     <span class='date'>From <span class='price'>{{place.start}}</span></span>
                 </div>
-                <div id='text-desc' class="card-content">
+                <!-- <div id='text-desc' class="card-content">
                     <p>{{place.description}}</p>
-                </div>
+                </div> -->
                 
                 <div class='card-bottom-part'>
                     <span class="chip blue-grey darken-1 tag-card" v-for='(tag, index) in place.tags' :key='index'>
                         {{tag}}
                     </span>
                 </div>
-            </div>
-            <div class='card right-part' @click='showMore()'>
-                <i class='material-icons medium go-icon'>arrow_forward</i>
             </div>
     </div>
 </template>
@@ -55,39 +51,56 @@ export default {
     },
     props : ['place'],
     created(){
-        console.log(this.place)
+        // console.log(this.place)
     }
-
 }
 </script>
 
 <style scoped>
 
 .place{
-    margin-bottom:30px;
+    margin:0px;
     min-height: 100px;
-}
-.card-image{
-    width: 25%;
-}
-
-.card-image img{
-    margin: auto;
+    height: 140px;
+    transition: transform .2s;
 }
 
-.card-image img{
-    width:150px;
-    height: 150px;
+.place:hover{
+    background-color: lightgray;
+    cursor: pointer;
+    position:relative;
+    width: 105%;
+    zoom: 1.05;
+    z-index: 100;
+    left: -2.5%;
+    transform: scale(1.05);
+}
+.place .card-image{
+    min-width: 20%;
+    max-width: 20%;
+    border-right: 2px solid oldlace;
+}
+
+
+.place .card-image img{
+    max-width: 100%;
+    max-height: 100px;
     border: 4px solid #ddd;
     border-radius: 4px;
+    position: absolute;
+    margin: auto;
 }
 
 .card-action{
     text-align: left;
 }
 
+.card-stack{
+    padding: 0px;
+}
+
 .card-stack .title{
-    font-size: 40px;
+    font-size: 0.7em;
 
 }
 
@@ -98,7 +111,7 @@ export default {
 }
 
 .address{
-    font-size: 20px;
+    font-size: 0.5em;
     color:dodgerblue;
 }
 
@@ -110,16 +123,17 @@ export default {
     width: 100%;
     position: relative;
     left: 0px;
-    text-align: left;
+    text-align: center;
 }
 
 .first-line{
+    text-align: center;
     margin: 0px;
     padding: 0px;
 }
 
 .price{
-    font-size: 30px;
+    font-size: 1em;
     color: orange;
 }
 
@@ -142,31 +156,21 @@ export default {
     left: 10px;
 }
 
-.leftpart{
+#left-part{
     display: inline-block;
-    width: 75%;
+    width: 100%;
+
 }
 
-.right-part{
-    display:inline-block;
-    width: 10%;
-    padding: 0px;
-    margin: 0px;
-    cursor: pointer;
-    
-}
 
-.place:hover .right-part{
-    background-color: #546e7a;
-}
 
 .go-icon{
     position: relative;
     top: 35%;
 }
 .card-bottom-part{
-    text-align: left;
-    padding: 10px 40px;
+    text-align: center;
+    padding: 5px 0px;
 }
 
 .card-bottom-part .chip{

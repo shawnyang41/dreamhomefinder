@@ -1,6 +1,6 @@
 <template>
     <div class='placesroll'>
-        <div v-for='place in places' :key=place.id>
+        <div v-for='place in getPlaces' :key=place.id>
             <Place :place='place'/>
         </div>
         <div class="progress" v-bind:class='{ omit : doneLoading}'>
@@ -26,17 +26,28 @@ export default {
         Place
     },
 
+    computed:{
+        getPlaces(){
+            console.log('placeroll:', this.nob)
+            console.log(this.places)
+            if (this.nob == 0) return this.places
+            return this.places.filter(place => {
+                return place.nob == this.nob;
+            })
+        }
+    },
+
     props:['nob'],
 
     created(){
-        var placeRef = db.collection("place");
+        var placeRef = db.collection("places");
         var that = this
-        placeRef.where('nob', '==', 2).get().then(
+        placeRef.get().then(
             (querySnapshot) => {
                 querySnapshot.forEach(function(doc) {
                     var jsonData = doc.data()
                     jsonData.id = doc.id
-                    console.log(jsonData)
+                    // console.log(jsonData)
                     that.places.push(jsonData)
                     // console.log(doc.id, " => ", doc.data());
                     });
@@ -47,6 +58,7 @@ export default {
                 console.log(err)
             }
         )
+        console.log('created')
     }
 }
 </script>
@@ -55,7 +67,8 @@ export default {
     .placesroll{
         /* background-color:rgba(255, 255, 255, 0.7);; */
         margin: 0px 0px;
-        padding: 0px 0px;       
+        padding: 0px 0px;
+        width: 100%;       
     }
 
     .omit {

@@ -1,0 +1,29 @@
+            {
+                description : 'Top Floor Penthouse with amazing view, near by McDonald\'s and seve eleven. with Gym and study rooms. bla bla bla bla bla bla bla bla bla bla bla bla, bla bla bla, bla bla bla bla, bla.',
+                tags :['Pet Friendly', 'Big Bed', 'Bus Stop'],
+                nob: 2,
+                address: '1 Columbia St., Wateroo, ON',
+                price: { 
+                    price: '1650',
+                    included: ['Internet', 'Hydro', 'Water', 'Heat']
+                },
+                start: 'DEC 2018',
+                leaseDuration: 4,
+                extendable: true,
+                addressSlug: '1+Columbia+St',
+                pictures: [
+                    'https://firebasestorage.googleapis.com/v0/b/dreamhomefinder-9edf5.appspot.com/o/4uhvixUQCHNmWbCZNk6l%2FIMG_1522.JPG?alt=media&token=327ece3e-f891-4390-b71d-e6d1a7049fa5',
+                    'https://firebasestorage.googleapis.com/v0/b/dreamhomefinder-9edf5.appspot.com/o/4uhvixUQCHNmWbCZNk6l%2FIMG_1523.JPG?alt=media&token=21c2270b-90e1-4fc7-ab01-1fc4a4d9ab9a'
+                ],
+                contact: {
+                name : 'Sally',
+                phone: '5198887777',
+                weChat: 'angel579'
+                }
+            }
+
+
+
+            '交通便利：2分钟走到13#车站，乘车12-15分钟到UW的图书馆门前 ；      4分钟走到31#车站，乘车8分钟到UW校门前; 2分钟到foodbasic超市、银行、餐馆… 10分钟到 The boardwalk Big Mall，各种商店 银行 饭店 和影院. 新房设施全：空调，软化水器，新的洗衣干衣机，烤箱，冰箱…...一应俱全；房东帮助代买软化水盐。 walkout 地下室 28平米大房间，完全地上，Queen床，高档家具，大窗户（见下图），独立卫生间，独用冰箱，独用微波炉，独立外出门，独自一层，室外车位免费。'
+
+            

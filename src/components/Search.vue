@@ -2,7 +2,7 @@
     <div class='search'>
         <div class="search-header-container">
             <div class='place-holder'></div>
-            <Searchbar/>
+            <Searchbar :nob='nob' @changeSearch="changeSearch"/>
         </div>
         <Placesroll :nob='nob'/>
 
@@ -17,20 +17,32 @@ export default {
     name: 'Search',
     data(){
         return {
-            nob: this.$route.params.nob
+            nob: 1
         }
     },
     methods: {
         updateNob(){
+            console.log('watch!', this.$route.params.nob)
             this.nob = this.$route.params.nob
+        },
+
+        changeSearch(payload){
+            console.log(payload)
+            this.nob = payload.nob
+            this.$router.push({name: 'Search', params : {nob : this.nob}})
         }
     },
     components : {
         Searchbar,
         Placesroll
     },
-    watch: {
+
+    watch:{
         $route: 'updateNob'
+    },
+    
+    created(){
+        this.nob = this.$route.params.nob
     }
 }
 </script>
@@ -39,7 +51,7 @@ export default {
     .search {
         margin: 30px;
         text-align: center;
-        width: 75%;
+        width: 61.8%;
         margin-left: auto;
         margin-right: auto;
     }

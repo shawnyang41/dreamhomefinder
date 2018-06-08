@@ -1,10 +1,11 @@
 <template>
+
     <div class="view-place">
         
         <div class="progress" v-bind:class='{omit : doneLoading}'>
             <div class="indeterminate" ></div>
-        </div>
-
+        </div>        
+        
         <div class="left-buttons">
             <button class='btn-large light-blue' @click='goBack(e)'>Back</button>
             <button  class='btn-large cyan' @click='goMap(e)'>Map</button>
@@ -38,7 +39,7 @@
             </div>
         </div>
         <div class="description">
-            <!-- <ContactCard :contact='place.contact'/> -->
+            
             <div class='right-part'>{{place.description}}</div>
         </div>
         <div class="tags">
@@ -130,16 +131,16 @@ export default {
         }
 
     },
-    props:['placeId'],
     created(){
-        db.collection('place').doc('4uhvixUQCHNmWbCZNk6l').get().then( 
+        var id = this.$route.params.id
+        db.collection('places').doc(id).get().then( 
             (doc) => {
                 if(doc.exists){
                     this.place = doc.data()
                     console.log(this.place)
+                    this.doneLoading = true
                 }
                 else console.log('No such document!')
-                this.doneLoading = true
             }
         ).catch(
             (error) => {
@@ -152,12 +153,20 @@ export default {
 </script>
 
 <style>
+
+
+
 .view-place{
     width: 75%;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 1);
     margin-top: 30px;
 }
+
+.view-place progress{
+    height: 40px;
+}
+
 
 .first-line{
     font-size: 40px;

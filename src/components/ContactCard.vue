@@ -31,14 +31,15 @@ export default {
     props:['contact'],
     methods:{
         omitPhone(){
-            return this.contact.phone === null
+            return this.contact.phone === ""
         },
         omitWeChat(){
-            return this.contact.WeChat === null
+            
+            return this.contact.weChat === ""
         },
         omitEmail(){
-            console.log('email = ', this.contact.email)
-            return this.contact.email === null
+            
+            return this.contact.email === ""
         }
     }
 }

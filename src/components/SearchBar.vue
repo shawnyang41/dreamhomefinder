@@ -1,7 +1,7 @@
 <template>
     <div class='searchbar'>
             <ul @mouseout='clearHover()'>
-                <li v-for= 'index in 7' :key='index'>
+                <li v-for= 'index in 6' :key='index'>
                     <i class = 'material-icons' @click='clicked(index)' @mouseover='hover(index)'
                     v-bind:class = '{selected : isSelected(index), 
                     unselected : isUnSelected(index),
@@ -10,11 +10,11 @@
                     </i>
                 </li>
             </ul>
-            <div class='bedroom-number slim'>
+            <div id='bedroom-number' class='bedroom-number slim' @click='goZero()'>
                 {{badnumber}} 
             </div>
             <div class='bedroom-number'>
-                beds
+                Bedrooms
             </div>
             <a class="waves-effect waves-light btn-large go-btn blue-grey darken-1 pulse" @click='go()'>Easy Search</a>
         </div>
@@ -25,8 +25,8 @@ export default {
     name: 'Searchbar',
     data(){
         return {
-            nob : 1,
-            hovered: 0
+            hovered: 0,
+            nob: 1
         }
     },
     methods: {
@@ -52,18 +52,36 @@ export default {
         clearHover(){
             this.hovered = 0
         },
+
         go(){
+            // this.$router.push({name: 'Search', params : {nob : this.nob}})
+            this.$emit('changeSearch', {nob:this.nob})
+        },
+        
+        updateNob(){
+            this.nob = this.$route.params.nob
+        },
+        goZero(){
+            this.nob = 0;
             this.$router.push({name: 'Search', params : {nob : this.nob}})
         }
     },
     computed:{
         badnumber(){
-            if (this.hovered === 0) return this.nob;
+            if (this.hovered === 0){
+                if(this.nob == 0) return 'ALL'
+                return this.nob;
+            }
             return this.hovered;
         }
     },
-    props: ['initnob']
+    watch:{
+        $route : 'updateNob'
+    },
 
+    created(){
+        if (this.$route.params.nob != undefined) this.nob = this.$route.params.nob
+    }
 }
 </script>
 
@@ -82,7 +100,7 @@ export default {
 }
 
 .searchbar i{
-    font-size: 45px;
+    font-size: 3em;
 }
 
 
@@ -114,13 +132,17 @@ export default {
 .bedroom-number{
     position: relative;
     color : black;
-    font-size: 40px;
+    font-size: 2.5em;
     font-family: 'Quicksand', sans-serif;
     text-align: left;
     display: inline-block;
     margin: 0px;
     padding: 0px 0px 0px 20px;
     top: -10px;
+}
+
+#bedroom-number{
+    cursor: pointer;
 }
 
 .bedroom-number.slim{
